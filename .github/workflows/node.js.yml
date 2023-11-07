@@ -13,6 +13,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     strategy:
       matrix:
@@ -33,6 +41,7 @@ jobs:
       uses: actions/upload-pages-artifact@v1
       with:
         path: ./build  # Or wherever your build script outputs files to
-    - name: Deploy
-      if: github.ref == 'refs/heads/main'  # Ensure this only runs on the default branch
-      uses: actions/deploy-pages@v1
+    # Specify runner + deployment step
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
