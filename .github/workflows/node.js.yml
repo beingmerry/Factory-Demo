@@ -29,3 +29,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - name: Upload Artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./build  # Or wherever your build script outputs files to
+    - name: Deploy
+      if: github.ref == 'refs/heads/main'  # Ensure this only runs on the default branch
+      uses: actions/deploy-pages@v1
