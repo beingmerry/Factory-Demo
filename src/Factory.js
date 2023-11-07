@@ -11,21 +11,13 @@ function Factory() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Factory Demo</h1>
+        <h1>Floor Demo</h1>
 
         <p>Count = {count}</p>
         {/* <!-- HTML !--> */}
         <button className="button" onClick={handleClick}>
           Count + 1
         </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
